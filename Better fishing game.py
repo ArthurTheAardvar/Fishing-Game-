@@ -20,10 +20,13 @@ class Player():
             if event.type == pygame.KEYDOWN: #keyboard input
 
                 if event.key == pygame.K_UP:
-                    self.vy += 1
+                    self.vy -= 1
                 
                 if event.key == pygame.K_DOWN:
-                    self.vy -= 1
+                    self.vy += 1
+
+            self.pos.x += self.vx
+            self.pos.y += self.vy
 
 
     def draw(self):
