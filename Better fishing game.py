@@ -1,4 +1,3 @@
-
 import pygame
 import random
 from pygame.math import Vector2
@@ -26,13 +25,13 @@ class Fish():
         self.vy = 0
 
     def move(self):
-        self.movement = random.randrange(0, 10)
+        self.movement = random.randrange(0, 50)
 
-        if self.movement >=5:
-            self.vy += 1
+        if self.movement >=25:
+            self.vy += 0.5
 
         else:
-            self.vy -= 1
+            self.vy -= 0.5
 
         self.pos.y += self.vy
 
@@ -85,10 +84,21 @@ while True:
         else:
             vy = 0
 
+    if pos.y < 100:
+        vy *= -1
+
+    elif pos.y > 800:
+        vy *= -1
 
 
     pos.x += vx
     pos.y += vy
+
+
+    if fish.pos.y == pos.y:
+        score += 1
+
+    print(score)
 
        
     fish.move()
@@ -102,8 +112,7 @@ while True:
        
     pygame.draw.rect(screen, (255, 255, 255), (pos.x, pos.y, 20, 100), 1)
 
-    pygame.draw.line(screen,(255,255,50),(0,20),(score*2,20),50)
-    pygame.draw.rect(screen, (1,255,255), (400,0,30,30),0)
+    
     pygame.display.flip()
 pygame.quit()
 
